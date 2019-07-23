@@ -1,2 +1,2 @@
 # Assembler_Train
-:pizza :coffe
+:pizza: :coffe: :code:
