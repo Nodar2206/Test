@@ -1,2 +1,2 @@
-# Assembler_Train
-:pizza: :coffee:
+# Assembler_Training
+:coffee::coffee:
