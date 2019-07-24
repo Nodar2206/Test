@@ -1,32 +1,29 @@
-;Here I can print string without counting rsi(LENGHT)
 section .data
-        text1 db "DAROVA",10,0 ;Counting unitll it hits zero
-
-section .text
-        global _start
-_start:
-        mov rax, text1
-        call _print
-
+        text db "Hello, fucking world!",10,0
+%macro exit 0
         mov rax, 60
         mov rdi, 0
         syscall
-
-;input: rax as pointer to string (MEMORY ADRESS)
-;output: print string at rax
-_print:;Here we need to count link
-        push rax;Write in stack
-        mov rbx, 0 ;count link of the string
-_printLoop:;Process
+%endmacro
+section .text
+        global _start
+_start:
+        mov rax, text 
+        call _Print
+        exit
+_Print:
+        push rax;
+        mov rbx, 0
+_PrintLoop:
         inc rax
-        inc rbx;How long the string is 
-        mov cl, [rax] ;cl - is a 8 bit eqvalent of rcx
-        cmp cl, 0 ;cmp – команда процессора для сравнения чисел
-        jne _printLoop ;Умовний перехід
+        inc rbx
+        mov cl, [rax]
+        cmp cl, 0
+        jne _PrintLoop
 
         mov rax, 1
         mov rdi, 1
-        pop rsi ;exit from stack
+        pop rsi
         mov rdx, rbx
         syscall
         ret
